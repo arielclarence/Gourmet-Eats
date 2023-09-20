@@ -1,6 +1,5 @@
 package fontys.sem3.school.business.impl;
 
-import fontys.sem3.school.business.GetCuisineUseCase;
 import fontys.sem3.school.domain.Cuisine;
 import fontys.sem3.school.domain.GetCuisinesResponse;
 import fontys.sem3.school.persistence.CuisineRepository;
