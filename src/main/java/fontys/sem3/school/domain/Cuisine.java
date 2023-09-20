@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+//asd
 public class Cuisine {
     private Long id;
 
