@@ -1,0 +1,20 @@
+<configuration>
+    <!-- dev environments -->
+    <springProfile name="!prod">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+        <logger name="fontys.sem3.school">
+            <level value="debug"/>
+        </logger>
+        <logger name="org.springframework.web.client">
+            <level value="debug"/>
+        </logger>
+        <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+            <level value="debug" />
+        </logger>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+ </configuration>
