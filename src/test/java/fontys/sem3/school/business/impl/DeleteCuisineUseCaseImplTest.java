@@ -46,7 +46,7 @@ class DeleteCuisineUseCaseImplTest {
         // Verify that deleteById was called with the correct cuisineId
         Mockito.verify(cuisineRepositoryMock, Mockito.times(1)).deleteById(cuisineId);
 
-        // Assert
+        // Assertas
     }
 
 }
