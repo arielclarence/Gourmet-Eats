@@ -16,13 +16,13 @@ public class GetCuisinesUseCaseImpl implements GetCuisinesUseCase {
 
     @Override
     public GetCuisinesResponse getCuisines() {
-        List<Cuisine> countries = cuisineRepository.findAll()
+        List<Cuisine> cuisines = cuisineRepository.findAll()
                 .stream()
                 .map(CuisineConverter::convert)
                 .toList();
 
         return GetCuisinesResponse.builder()
-                .countries(countries)
+                .cuisines(cuisines)
                 .build();
     }
 }
