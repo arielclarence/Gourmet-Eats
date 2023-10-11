@@ -1,5 +1,8 @@
 package fontys.sem3.school.controller;
 
+import fontys.sem3.school.business.CreateCuisineUseCase;
+import fontys.sem3.school.business.UpdateCuisineUseCase;
+import fontys.sem3.school.domain.UpdateCuisineRequest;
 import fontys.sem3.school.business.*;
 import fontys.sem3.school.domain.*;
 import jakarta.validation.Valid;
@@ -19,7 +22,7 @@ public class CuisinesController {
     private final DeleteCuisineUseCase deleteCuisineUseCase;
     private final CreateCuisineUseCase createCuisineUseCase;
     private final UpdateCuisineUseCase updateCuisineUseCase;
-
+//b
 
     @GetMapping
     public ResponseEntity<GetCuisinesResponse> getCuisines() {
