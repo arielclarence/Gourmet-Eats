@@ -7,11 +7,11 @@ import java.util.List;
 public interface CuisineRepository {
 //    boolean existsByCode(String code);
 
-    boolean existsById(long countryId);
+    boolean existsById(long cuisineId);
 
-    CuisineEntity findById(long countryId);
+    CuisineEntity findById(long cuisineId);
 
-    CuisineEntity save(CuisineEntity country);
+    CuisineEntity save(CuisineEntity cuisine);
 
     List<CuisineEntity> findAll();
     void deleteById(long cuisineId);

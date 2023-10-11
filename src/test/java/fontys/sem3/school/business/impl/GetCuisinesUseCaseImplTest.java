@@ -37,7 +37,7 @@ class GetCuisinesUseCaseImplTest {
         Cuisine indonesian = Cuisine.builder().id(3L).cuisineName("Indonesian").build();
         Cuisine chinese = Cuisine.builder().id(4L).cuisineName("Chinese").build();
         Cuisine brazillian = Cuisine.builder().id(5L).cuisineName("Brazillian").build();
-        GetCuisinesResponse expectedResult = GetCuisinesResponse .builder() .countries(List.of(dutch, turkish,indonesian,chinese,brazillian)) .build();
+        GetCuisinesResponse expectedResult = GetCuisinesResponse .builder() .cuisines(List.of(dutch, turkish,indonesian,chinese,brazillian)) .build();
         assertEquals(expectedResult, actualResult);
         verify(cuisineRepositoryMock).findAll();
     }
