@@ -10,7 +10,7 @@ final class CuisineConverter {
     public static Cuisine convert(CuisineEntity cuisine) {
         return Cuisine.builder()
                 .id(cuisine.getId())
-                .cuisineName(cuisine.getCuisineName())
+                .cuisineName(cuisine.getName())
                 .build();
     }
 }

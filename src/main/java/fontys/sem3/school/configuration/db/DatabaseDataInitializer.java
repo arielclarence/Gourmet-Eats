@@ -16,11 +16,11 @@ public class DatabaseDataInitializer {
     @EventListener(ApplicationReadyEvent.class)
     public void populateDatabaseInitialDummyData() {
         if (cuisineRepository.count() == 0) {
-            cuisineRepository.save(CuisineEntity.builder().cuisineName("Dutch").build());
-            cuisineRepository.save(CuisineEntity.builder().cuisineName("Turkish").build());
-            cuisineRepository.save(CuisineEntity.builder().cuisineName("Indonesian").build());
-            cuisineRepository.save(CuisineEntity.builder().cuisineName("Chinese").build());
-            cuisineRepository.save(CuisineEntity.builder().cuisineName("Brazillian").build());
+            cuisineRepository.save(CuisineEntity.builder().name("Dutch").build());
+            cuisineRepository.save(CuisineEntity.builder().name("Turkish").build());
+            cuisineRepository.save(CuisineEntity.builder().name("Indonesian").build());
+            cuisineRepository.save(CuisineEntity.builder().name("Chinese").build());
+            cuisineRepository.save(CuisineEntity.builder().name("Brazillian").build());
         }
 
     }
