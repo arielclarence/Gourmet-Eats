@@ -2,7 +2,11 @@ plugins {
     id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'java'
+    id "org.sonarqube" version "4.2.1.3168"
+    id 'jacoco'
+//
 }
+//apply plugin: "org.sonarqube"
 
 group = 'fontys.sem3'
 version = '0.0.1-SNAPSHOT'
@@ -18,6 +22,8 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,14 +34,29 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     implementation 'com.h2database:h2'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.0.4'
     testImplementation 'com.playtika.testcontainers:embedded-mysql:3.0.0-RC9'
-
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+sonar {
+    properties {
+        property "sonar.projectKey", "I530399_gourmeteats_AYup9kRVmd1MmNnQVKyC"
+        property "sonar.projectName", "GourmetEats"
+        property("sonar.host.url", "http://localhost:9000")
+        property "sonar.qualitygate.wait", true
+    }
 }

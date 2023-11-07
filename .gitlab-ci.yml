@@ -20,4 +20,17 @@ test:
   script:
     - ./gradlew test
 
+scan:
+  stage: test
+  script:
+    - gradle sonar -Pcoverage -Dsonar.host.url=$sonar_host_url -Dsonar.token=$sonar_token --info
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  dependencies:
+    - test
+
 
