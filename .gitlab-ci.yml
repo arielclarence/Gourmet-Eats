@@ -22,7 +22,7 @@ test:
 scan:
   stage: test
   script:
-    - ./gradlew sonar -Pcoverage -Dsonar.host.url=$sonar_host_url -Dsonar.token=$sonar_token --info
+    - ./gradlew sonar -Pcoverage -D"sonar.host.url=$sonar_host_url" -D"sonar.token=$sonar_token" --info
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
