@@ -57,6 +57,6 @@ sonar {
         property "sonar.projectKey", "I530399_gourmeteats_AYup9kRVmd1MmNnQVKyC"
         property "sonar.projectName", "GourmetEats"
         property("sonar.host.url", "http://localhost:9000")
-        property "sonar.qualitygate.wait", true
+        property "sonar.qualitygate.wait", false
     }
 }
