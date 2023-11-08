@@ -13,10 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
-
+@SpringBootTest
 class CuisineUseCaseImplTest {
 
     @Mock
@@ -26,7 +27,7 @@ class CuisineUseCaseImplTest {
     @Mock
     private  CuisineIdValidator cuisineIdValidator;
 
-    ;
+
 
 
     @BeforeEach
