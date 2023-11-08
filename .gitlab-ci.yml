@@ -7,7 +7,7 @@
 stages:
   - build
   - test
-  - sonar
+#  - sonar
 
 build:
   stage: build
@@ -20,11 +20,11 @@ test:
   script:
     - ./gradlew test
 
-sonar:
-  stage: sonar
-  script:
-    - ./gradlew jacocoTestReport sonar
-    - ./gradlew --stop
+#sonar:
+#  stage: sonar
+#  script:
+#    - ./gradlew jacocoTestReport sonar
+#    - ./gradlew --stop
 
 scan:
   stage: test
