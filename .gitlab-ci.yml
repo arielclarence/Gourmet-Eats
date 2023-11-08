@@ -19,17 +19,23 @@ test:
   script:
     - ./gradlew test
 
-scan:
-  stage: test
+sonar:
+  stage: sonar
   script:
-    - ./gradlew sonar -Pcoverage -D"sonar.host.url=$sonar_host_url" -D"sonar.token=$sonar_token" --info
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - build
-      - .gradle
-  dependencies:
-    - test
+    - ./gradlew jacocoTestReport sonar
+    - ./gradlew --stop
 
+#scan:
+#  stage: test
+#  script:
+#    - ./gradlew sonar -Pcoverage -D"sonar.host.url=$sonar_host_url" -D"sonar.token=$sonar_token" --info
+#  cache:
+#    key: "$CI_COMMIT_REF_NAME"
+#    policy: pull
+#    paths:
+#      - build
+#      - .gradle
+#  dependencies:
+#    - test
+#
 
