@@ -19,6 +19,12 @@ test:
   stage: test
   script:
     - ./gradlew test
+  cache:
+    key: ' $CI_COMMIT_REF_NAME'
+    policy: pull-push
+    path:
+      - build
+      - .gradle
 
 #sonar:
 #  stage: sonar
