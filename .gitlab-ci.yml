@@ -7,6 +7,7 @@
 stages:
   - build
   - test
+  - scan
 #  - sonar
 
 build:
@@ -43,7 +44,7 @@ test:
 #    - ./gradlew --stop
 
 scan:
-  stage: test
+  stage: scan
   script:
     - ./gradlew sonar -Pcoverage -D"sonar.host.url=$sonar_host_url" -D"sonar.token=$sonar_token" --info
   cache:
