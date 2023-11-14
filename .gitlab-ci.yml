@@ -14,11 +14,21 @@ build:
   script:
     - echo "commit"
     - ./gradlew assemble
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
 
 test:
   stage: test
   script:
     - ./gradlew test
+  artifacts:
+    when: always
+    paths:
+      - build/reports/
   cache:
     key: ' $CI_COMMIT_REF_NAME'
     policy: pull-push
