@@ -22,7 +22,7 @@ test:
   cache:
     key: ' $CI_COMMIT_REF_NAME'
     policy: pull-push
-    path:
+    paths:
       - build
       - .gradle
 
