@@ -61,12 +61,6 @@ public class UserEntity {
     @Column(name = "birthdate")
     private Date birthdate;
 
-
-    @NotBlank
-    @Length(min = 2 ,max = 50)
-    @Column(name = "image")
-    private String image;
-
     @NotBlank
     @Length(min = 2 ,max = 50)
     @Column(name = "balance")

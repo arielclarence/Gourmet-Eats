@@ -8,7 +8,6 @@ CREATE TABLE `user`
     address   varchar(255) NOT NULL,
     gender   varchar(255) NOT NULL,
     birthdate   date NOT NULL,
-    image   varchar(255) NOT NULL,
     balance   int NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (username)
