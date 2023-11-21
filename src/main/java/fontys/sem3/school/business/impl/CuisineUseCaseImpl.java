@@ -3,7 +3,7 @@ package fontys.sem3.school.business.impl;
 import fontys.sem3.school.business.CuisineUseCase;
 import fontys.sem3.school.business.CuisineIdValidator;
 import fontys.sem3.school.business.exception.IdAlreadyExistsException;
-import fontys.sem3.school.business.exception.InvalidStudentException;
+import fontys.sem3.school.business.exception.InvalidUserException;
 import fontys.sem3.school.domain.*;
 import fontys.sem3.school.persistence.CuisineRepository;
 import fontys.sem3.school.persistence.entity.CuisineEntity;
@@ -36,12 +36,9 @@ public class CuisineUseCaseImpl implements CuisineUseCase {
     }
     @Override
     public CreateCuisineResponse createCuisine(CreateCuisineRequest request) {
-        if (cuisineRepository.existsById(request.getId())) {
-            throw new IdAlreadyExistsException();
-        }
-
-
-
+//        if (cuisineRepository.existsById(request.getId())) {
+//            throw new IdAlreadyExistsException();
+//        }
         CuisineEntity savedCuisine = saveNewCuisine(request);
 
         return CreateCuisineResponse.builder()
@@ -57,8 +54,7 @@ public class CuisineUseCaseImpl implements CuisineUseCase {
 
 
         CuisineEntity newCuisine = CuisineEntity.builder()
-                .id(request.getId())
-                .name(request.getCuisinename())
+                .name(request.getName())
                 .build();
         return cuisineRepository.save(newCuisine);
     }
@@ -66,7 +62,7 @@ public class CuisineUseCaseImpl implements CuisineUseCase {
     public void updateCuisine(UpdateCuisineRequest request) {
         Optional<CuisineEntity> CuisineOptional = cuisineRepository.findById(request.getId());
         if (CuisineOptional.isEmpty()) {
-            throw new InvalidStudentException("Cuisine_ID_INVALID");
+            throw new InvalidUserException("CUISINE_ID_INVALID");
         }
 
         cuisineIdValidator.validateId(request.getId());
@@ -76,8 +72,8 @@ public class CuisineUseCaseImpl implements CuisineUseCase {
     }
 
     private void updateFields(UpdateCuisineRequest request, CuisineEntity Cuisine) {
-        Cuisine.setName(request.getCuisinename());
+        Cuisine.setName(request.getName());
         Cuisine.setId(request.getId());
-
+        cuisineRepository.save(Cuisine);
     }
 }

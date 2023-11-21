@@ -1,13 +1,13 @@
 package fontys.sem3.school.persistence.entity;
 
+import fontys.sem3.school.domain.Enum.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-
 import java.util.Date;
 
 @Entity
@@ -31,15 +31,13 @@ public class UserEntity {
 
     @NotBlank
     @Length(min = 2, max = 50)
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @NotBlank
     @Length(max = 60)
     @Column(name = "password_hash")
     private String passwordhash;
-
-
 
     @NotBlank
     @Length(max = 15)
@@ -56,14 +54,21 @@ public class UserEntity {
     @Column(name = "gender")
     private String gender;
 
+    @Length(max = 255)
+    @Column(name = "image")
+    private String image;
 
-    @NotBlank
+    @NotNull
+    @Column(name = "role")
+    private Role role;
+
+    @NotNull
+    @Past(message = "Birthdate must be in the past")
     @Column(name = "birthdate")
     private Date birthdate;
 
-    @NotBlank
-    @Length(min = 2 ,max = 50)
-    @Column(name = "balance")
+    @NotNull
+    @Min(0)
     private Long balance;
 
 }

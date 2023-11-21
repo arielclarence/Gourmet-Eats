@@ -23,5 +23,6 @@ public class DatabaseDataInitializer {
             cuisineRepository.save(CuisineEntity.builder().name("Brazillian").build());
         }
 
+
     }
 }

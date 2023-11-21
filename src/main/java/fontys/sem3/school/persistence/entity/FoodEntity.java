@@ -26,7 +26,7 @@ public class FoodEntity {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     @ToString.Exclude
-    private SellerEntity seller;
+    private UserEntity seller;
 
     @NotBlank
     @Length(min = 2 ,max = 50)

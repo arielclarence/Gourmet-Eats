@@ -7,8 +7,10 @@ CREATE TABLE `user`
     phonenumber   varchar(255) NOT NULL,
     address   varchar(255) NOT NULL,
     gender   varchar(255) NOT NULL,
+    image   varchar(255) NOT NULL,
     birthdate   date NOT NULL,
     balance   int NOT NULL,
+
     PRIMARY KEY (id),
     UNIQUE (username)
 );

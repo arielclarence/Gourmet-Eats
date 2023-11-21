@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateCuisineRequest {
     private Long id;
-    private String cuisinename;
+    private String name;
 }

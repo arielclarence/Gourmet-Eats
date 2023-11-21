@@ -8,7 +8,4 @@ public class InvalidCuisineException extends ResponseStatusException {
         super(HttpStatus.BAD_REQUEST, "CUISINE_INVALID");
     }
 
-    public InvalidCuisineException(String errorCode) {
-        super(HttpStatus.BAD_REQUEST, errorCode);
-    }
 }

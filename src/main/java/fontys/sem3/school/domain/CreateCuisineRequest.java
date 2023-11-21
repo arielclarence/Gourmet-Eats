@@ -14,11 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateCuisineRequest {
-    @NotNull
-    @Min(1)
-    @Max(100000)
-    private Long id;
+
 
     @NotBlank
-    private String cuisinename;
+    private String name;
 }
