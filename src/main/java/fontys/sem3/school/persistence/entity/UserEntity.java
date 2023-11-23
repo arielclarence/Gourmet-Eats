@@ -71,4 +71,5 @@ public class UserEntity {
     @Min(0)
     private Long balance;
 
+
 }

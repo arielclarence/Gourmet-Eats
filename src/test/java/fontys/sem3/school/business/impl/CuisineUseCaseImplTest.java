@@ -39,7 +39,7 @@ class CuisineUseCaseImplTest {
     @Test
     void testCreateCuisineSuccess() {
         // Arrange
-        CreateCuisineRequest request = new CreateCuisineRequest(1L, "Some Cuisine");
+        CreateCuisineRequest request = new CreateCuisineRequest( "Some Cuisine");
         CuisineEntity savedCuisineEntity = CuisineEntity.builder()
                 .id(1L)
                 .name("Some Cuisine")

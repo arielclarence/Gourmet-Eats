@@ -1,3 +1,21 @@
+
+CREATE TABLE `user`
+(
+    id int NOT NULL AUTO_INCREMENT,
+    name   varchar(255) NOT NULL,
+    username   varchar(255) NOT NULL,
+    password_hash   varchar(255) NOT NULL,
+    phonenumber   varchar(255) NOT NULL,
+    address   varchar(255) NOT NULL,
+    gender   varchar(255) NOT NULL,
+    image   varchar(255),
+    birthdate   date NOT NULL,
+    balance   int NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE (username)
+
+);
 CREATE TABLE cuisine
 (
     id   int     NOT NULL AUTO_INCREMENT,
@@ -5,7 +23,6 @@ CREATE TABLE cuisine
     PRIMARY KEY (id),
     UNIQUE (name)
 );
-
 CREATE TABLE food
 (
     id         int NOT NULL AUTO_INCREMENT,
@@ -20,8 +37,10 @@ CREATE TABLE food
 
     PRIMARY KEY (id),
     UNIQUE (code),
-    FOREIGN KEY (seller_id) REFERENCES cuisine (id),
+    FOREIGN KEY (seller_id) REFERENCES user (id),
     FOREIGN KEY (cuisine_id) REFERENCES cuisine (id)
 
 
 );
+
+
