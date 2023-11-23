@@ -82,8 +82,9 @@ public class UserUseCaseImpl implements UserUseCase {
         User.setName(request.getName());
         User.setId(request.getId());
         User.setUsername(request.getUsername());
+        String encodedPassword = passwordEncoder.encode(request.getPasswordhash());
 
-        User.setPasswordhash(request.getPasswordhash());
+        User.setPasswordhash(encodedPassword);
         User.setPhonenumber(request.getPhonenumber());
         if (request.getImage()!=null){
             User.setImage(request.getImage());
