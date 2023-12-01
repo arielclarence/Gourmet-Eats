@@ -57,7 +57,7 @@ public class AuthenticationRequestFilter extends OncePerRequestFilter {
 
     private void setupSpringSecurityContext(AccessToken accessToken) {
         // Assuming getRole() returns a single Role enum
-        Role role = accessToken.getRole();
+        String role = accessToken.getRole();
 
         UserDetails userDetails = new User(accessToken.getSubject(), "",
                 Collections.singletonList(new SimpleGrantedAuthority(SPRING_SECURITY_ROLE_PREFIX + role)));

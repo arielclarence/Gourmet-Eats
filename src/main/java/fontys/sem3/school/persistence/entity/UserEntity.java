@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -65,7 +67,7 @@ public class UserEntity {
     @NotNull
     @Past(message = "Birthdate must be in the past")
     @Column(name = "birthdate")
-    private Date birthdate;
+    private LocalDate birthdate;
 
     @NotNull
     @Min(0)

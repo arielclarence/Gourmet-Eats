@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -42,7 +43,7 @@ public class UpdateUserRequest {
 
     @NotNull
     @Past(message = "Birthdate must be in the past")
-    private Date birthdate;
+    private LocalDate birthdate;
 
 
 }

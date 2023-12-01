@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -42,7 +43,7 @@ public class User {
     private String image;
     private Role role;
 
-    private Date birthdate;
+    private LocalDate birthdate;
 
 
     private Long balance;
