@@ -1,6 +1,7 @@
 package fontys.sem3.school.controller;
 
 import fontys.sem3.school.business.UserUseCase;
+import fontys.sem3.school.business.UserUseCase;
 import fontys.sem3.school.domain.*;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
