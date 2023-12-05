@@ -3,6 +3,7 @@ package fontys.sem3.school.business.impl;
 import fontys.sem3.school.business.UserValidator;
 import fontys.sem3.school.business.UserUseCase;
 import fontys.sem3.school.business.exception.IdAlreadyExistsException;
+import fontys.sem3.school.business.exception.InvalidUserException;
 import fontys.sem3.school.domain.*;
 import fontys.sem3.school.persistence.UserRepository;
 import fontys.sem3.school.persistence.entity.UserEntity;
@@ -73,8 +74,13 @@ public class UserUseCaseImpl implements UserUseCase {
 
         userIdValidator.validateId(request.getId());
 
-        UserEntity User = UserOptional.get();
-        updateFieldsProfile(request, User);
+        if (UserOptional.isPresent()) {
+            UserEntity user = UserOptional.get();
+            updateFieldsProfile(request, user);
+        } else {
+            throw new InvalidUserException("USER_ID_INVALID");
+
+        }
     }
 
 
@@ -99,14 +105,19 @@ public class UserUseCaseImpl implements UserUseCase {
 
 
         userIdValidator.validateId(request.getId());
+        if (UserOptional.isPresent()) {
+            UserEntity User = UserOptional.get();
+            updatebalance(request, User);
+        } else {
+            throw new InvalidUserException("USER_ID_INVALID");
 
-        UserEntity User = UserOptional.get();
-        updatebalance(request, User);
+        }
+
     }
     private void updatebalance(UpdateUserBalanceRequest request, UserEntity User) {
         if (request.isUpdate()){
             User.setBalance(User.getBalance()+request.getAmount());
-        } else if (request.isUpdate()==false) {
+        } else{
             userIdValidator.validateBalance(User.getBalance(),request.getAmount());
             User.setBalance(request.getAmount()+User.getBalance());
         }
