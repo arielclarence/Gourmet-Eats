@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import fontys.sem3.school.business.UserValidator;
+import fontys.sem3.school.business.exception.InvalidUserException;
 import fontys.sem3.school.domain.*;
 import fontys.sem3.school.domain.Enum.Role;
 import fontys.sem3.school.persistence.UserRepository;
@@ -184,6 +185,48 @@ class UserUseCaseImplTest {
         // Assert
         verify(mockUserIdValidator, times(1)).validateId(existingUserId);
         assertEquals("Updated John Doe", existingUserEntity.getName());
+    }
+
+
+    @Test
+    void testUpdateUserNonExistentUser() {
+        // Arrange
+        UpdateUserRequest request = new UpdateUserRequest(/* provide necessary parameters */);
+
+        when(mockUserRepository.findById(request.getId())).thenReturn(Optional.empty());
+
+        // Act and Assert
+        assertThrows(InvalidUserException.class, () -> userUseCase.updateUser(request));
+    }
+
+    @Test
+    void testUpdateUserBalance() {
+        // Arrange
+        UpdateUserBalanceRequest request = new UpdateUserBalanceRequest(/* provide necessary parameters */);
+        UserEntity existingUser = new UserEntity(/* provide necessary parameters */);
+        request.setAmount(100L);
+        when(mockUserRepository.findById(request.getId())).thenReturn(Optional.of(existingUser));
+
+        // Act
+        userUseCase.updateUserBalance(request);
+
+        // Assert
+        assertEquals(100L, existingUser.getBalance());
+
+        // You can also verify that certain methods were called on the mock
+        verify(mockUserRepository, times(1)).findById(request.getId());
+        verify(mockUserRepository, times(1)).save(existingUser);
+    }
+
+    @Test
+    void testUpdateUserBalanceNonExistentUser() {
+        // Arrange
+        UpdateUserBalanceRequest request = new UpdateUserBalanceRequest(/* provide necessary parameters */);
+
+        when(mockUserRepository.findById(request.getId())).thenReturn(Optional.empty());
+
+        // Act and Assert
+        assertThrows(InvalidUserException.class, () -> userUseCase.updateUserBalance(request));
     }
 
     // Add more tests as needed for other methods and edge cases

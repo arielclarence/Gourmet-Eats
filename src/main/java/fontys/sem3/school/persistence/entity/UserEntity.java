@@ -17,7 +17,6 @@ import java.util.Date;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserEntity {
 
     @Id
@@ -73,5 +72,7 @@ public class UserEntity {
     @Min(0)
     private Long balance;
 
-
+    public UserEntity() {
+        this.balance = 0L; // Set the initial value to 0
+    }
 }

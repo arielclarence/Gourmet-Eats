@@ -21,7 +21,9 @@ public class UpdateUserBalanceRequest {
     @NotNull
     private boolean update;
 
-
+    public Long getAmount() {
+        return amount != null ? amount : 0L;
+    }
 
 
 }
