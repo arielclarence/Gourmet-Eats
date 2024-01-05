@@ -40,11 +40,17 @@ public class CreateUserRequest {
 
     @NotBlank
     @Length(max = 50)
+    private String email;
+
+    @NotBlank
+    @Length(max = 50)
     private String address;
 
     @NotNull
     private Role role;
 
+    @NotNull
+    private String profilePictureUrl;
 
     @NotBlank
     @Length(max = 30)

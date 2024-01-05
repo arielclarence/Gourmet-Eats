@@ -55,6 +55,7 @@ public class CuisineUseCaseImpl implements CuisineUseCase {
 
         CuisineEntity newCuisine = CuisineEntity.builder()
                 .name(request.getName())
+                .pictureUrl(request.getPictureUrl())
                 .build();
         return cuisineRepository.save(newCuisine);
     }

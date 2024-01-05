@@ -46,6 +46,11 @@ public class UserEntity {
     private String phonenumber;
 
     @NotBlank
+    @Email(message = "Please provide a valid email address")
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @NotBlank
     @Length(max = 50)
     @Column(name = "address") // Specify the column type and length
     private String address;
@@ -56,8 +61,8 @@ public class UserEntity {
     private String gender;
 
     @Length(max = 255)
-    @Column(name = "image")
-    private String image;
+    @Column(name = "profilePictureUrl")
+    private String profilePictureUrl;
 
     @NotNull
     @Column(name = "role")

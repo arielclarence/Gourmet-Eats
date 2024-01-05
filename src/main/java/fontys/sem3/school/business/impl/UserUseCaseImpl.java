@@ -59,8 +59,10 @@ public class UserUseCaseImpl implements UserUseCase {
                 .username(request.getUsername())
                 .passwordhash(encodedPassword)
                 .phonenumber(request.getPhonenumber())
+                .email(request.getEmail())
                 .address(request.getAddress())
                 .gender(request.getGender())
+                .profilePictureUrl(request.getProfilePictureUrl())
                 .birthdate(request.getBirthdate())
                 .role(request.getRole())
                 .balance(0L)
@@ -87,16 +89,10 @@ public class UserUseCaseImpl implements UserUseCase {
     private void updateFieldsProfile(UpdateUserRequest request, UserEntity User) {
         User.setName(request.getName());
         User.setId(request.getId());
-        User.setUsername(request.getUsername());
-        String encodedPassword = passwordEncoder.encode(request.getPasswordhash());
 
-        User.setPasswordhash(encodedPassword);
+
         User.setPhonenumber(request.getPhonenumber());
-        if (request.getImage()!=null){
-            User.setImage(request.getImage());
-        }
-        User.setGender(request.getGender());
-        User.setBirthdate(request.getBirthdate());
+
         userRepository.save(User);
     }
     @Override

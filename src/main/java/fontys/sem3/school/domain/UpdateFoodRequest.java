@@ -1,6 +1,5 @@
 package fontys.sem3.school.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//asd
-public class Cuisine {
+public class UpdateFoodRequest {
     private Long id;
-
-    private String cuisineName;
-
-    private String pictureUrl;
+    private String name;
+    private String description;
 }

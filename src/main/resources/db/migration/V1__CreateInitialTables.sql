@@ -6,6 +6,7 @@ CREATE TABLE `user`
     username   varchar(255) NOT NULL,
     password_hash   varchar(255) NOT NULL,
     phonenumber   varchar(255) NOT NULL,
+    email   varchar(255) NOT NULL,
     address   varchar(255) NOT NULL,
     gender   varchar(255) NOT NULL,
     image   varchar(255),

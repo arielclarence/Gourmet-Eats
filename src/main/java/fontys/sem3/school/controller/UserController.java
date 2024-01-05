@@ -44,6 +44,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     @PutMapping("{id}")
+    @RolesAllowed({"Customer","Seller","Admin"})
     public ResponseEntity<Void> updateUser(@PathVariable("id") long id,
                                               @RequestBody @Valid UpdateUserRequest request) {
         request.setId(id);

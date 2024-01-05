@@ -18,4 +18,7 @@ public class CreateCuisineRequest {
 
     @NotBlank
     private String name;
+
+    @NotNull
+    private String pictureUrl;
 }

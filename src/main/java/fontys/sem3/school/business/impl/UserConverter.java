@@ -20,9 +20,11 @@ final class UserConverter {
                 .username(usere.getUsername())
                 .passwordhash(usere.getPasswordhash())
                 .phonenumber(usere.getPhonenumber())
+                .email(usere.getEmail())
                 .address(usere.getAddress())
                 .gender(usere.getGender())
                 .birthdate(usere.getBirthdate())
+                .profilePictureUrl(usere.getProfilePictureUrl())
                 .role(usere.getRole())
                 .balance(usere.getBalance())
                 .build();

@@ -11,6 +11,7 @@ final class CuisineConverter {
         return Cuisine.builder()
                 .id(cuisine.getId())
                 .cuisineName(cuisine.getName())
+                .pictureUrl((cuisine.getPictureUrl()))
                 .build();
     }
 }

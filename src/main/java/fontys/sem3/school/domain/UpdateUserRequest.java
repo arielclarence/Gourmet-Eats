@@ -22,28 +22,9 @@ public class UpdateUserRequest {
     private Long id;
     @NotBlank
     private String name;
-
-    @NotBlank
-    private String username;
-
-    @NotBlank
-    private String passwordhash;
-
     @NotBlank
     private String phonenumber;
 
-    @NotBlank
-    private String address;
-
-    @NotBlank
-    private String gender;
-
-
-    private String image;
-
-    @NotNull
-    @Past(message = "Birthdate must be in the past")
-    private LocalDate birthdate;
 
 
 }

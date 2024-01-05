@@ -24,4 +24,10 @@ public class CuisineEntity {
     @Length(min = 2, max = 50)
     @Column(name = "name")
     private String name;
+
+
+    @NotBlank
+    @Length(min = 2, max = 255)
+    @Column(name = "pictureUrl")
+    private String pictureUrl;
 }

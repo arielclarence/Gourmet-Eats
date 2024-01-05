@@ -15,7 +15,6 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 @Builder
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class FoodEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,8 +44,8 @@ public class FoodEntity {
 
     @NotBlank
     @Length(min = 2 ,max = 255)
-    @Column(name = "image")
-    private String image;
+    @Column(name = "pictureUrl")
+    private String pictureUrl;
 
 
     @Column(name = "totalsales")
@@ -57,7 +56,6 @@ public class FoodEntity {
 
     @Column(name = "status")
     @NotNull
-//    @org.hibernate.annotations.ColumnDefault("true")
     private boolean status;
 
     @NotNull
@@ -65,4 +63,9 @@ public class FoodEntity {
     @JoinColumn(name = "cuisine_id")
     @ToString.Exclude
     private CuisineEntity cuisine;
+
+    public FoodEntity() {
+        this.totalsales = 0L;
+        this.status=true;
+    }
 }

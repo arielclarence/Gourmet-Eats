@@ -32,7 +32,7 @@ public class User {
 
 
     private String phonenumber;
-
+    private String email;
 
     private String address;
 
@@ -40,7 +40,7 @@ public class User {
     private String gender;
 
 
-    private String image;
+    private String profilePictureUrl;
     private Role role;
 
     private LocalDate birthdate;
