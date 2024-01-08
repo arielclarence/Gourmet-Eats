@@ -58,6 +58,7 @@ public class FoodUseCaseImpl implements FoodUseCase {
                 .description(request.getDescription())
                 .pictureUrl(request.getPictureUrl())
                 .totalsales(0L)
+                .price(request.getPrice())
                 .cuisine(request.getCuisine())
                 .build();
         return foodRepository.save(newFood);

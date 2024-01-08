@@ -54,6 +54,11 @@ public class FoodEntity {
     @Max(99999999)
     private Long totalsales;
 
+    @Column(name = "price")
+    @NotNull
+    @Min(0)
+    private double price;
+
     @Column(name = "status")
     @NotNull
     private boolean status;

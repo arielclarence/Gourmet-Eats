@@ -44,7 +44,9 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenEncoder, Access
         if (accessToken.getUserid() != null) {
             claimsMap.put("userid", accessToken.getUserid());
         }
-
+        if (accessToken.getProfilepicture() != null) {
+            claimsMap.put("profilepictureUrl", accessToken.getProfilepicture());
+        }
         Instant now = Instant.now();
         return Jwts.builder()
                 .setSubject(accessToken.getSubject())
@@ -65,8 +67,8 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenEncoder, Access
 
             String role = String.valueOf(claims.get("role", String.class));
             Long userid = claims.get("userid", Long.class);
-
-            return new AccessTokenImpl(claims.getSubject(), userid, role);
+            String profilepictureUrl = String.valueOf(claims.get("profilepictureUrl", String.class));
+            return new AccessTokenImpl(claims.getSubject(), userid,role, profilepictureUrl);
         } catch (JwtException e) {
             throw new InvalidAccessTokenException(e.getMessage());
         }

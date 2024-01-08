@@ -12,11 +12,14 @@ public class AccessTokenImpl implements AccessToken {
     private final String subject;
     private final Long userid;
     private final String role;
+    private final String profilepicture;
 
-    public AccessTokenImpl(String subject, Long userid, String role) {
+    public AccessTokenImpl(String subject, Long userid, String role,String profilepicture) {
         this.subject = subject;
         this.userid = userid;
-        this.role = role ;
+        this.role = role;
+        this.profilepicture = profilepicture;
+
     }
 
 

@@ -18,7 +18,6 @@ import java.util.Optional;
 public class UserController {
 
     private final UserUseCase userUseCase;
-//b
 
     @GetMapping
     @RolesAllowed({"Admin"})

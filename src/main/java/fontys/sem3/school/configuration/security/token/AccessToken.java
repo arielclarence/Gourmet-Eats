@@ -11,4 +11,6 @@ public interface AccessToken {
 
     String getRole();
 
+    String getProfilepicture();
+
 }

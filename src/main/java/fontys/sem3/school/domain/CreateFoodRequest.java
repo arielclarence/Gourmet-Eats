@@ -34,6 +34,9 @@ public class CreateFoodRequest {
     private String pictureUrl;
 
     @NotNull
+    private double price;
+
+    @NotNull
     private CuisineEntity cuisine;
 
 }

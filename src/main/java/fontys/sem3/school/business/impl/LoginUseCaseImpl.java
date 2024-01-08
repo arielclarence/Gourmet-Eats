@@ -50,7 +50,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
 
 
         return accessTokenEncoder.encode(
-                new AccessTokenImpl(user.getUsername(), user.getId(), role));
+                new AccessTokenImpl(user.getUsername(), user.getId(), role, user.getProfilePictureUrl()));
     }
 
 }

@@ -17,6 +17,7 @@ final class FoodConverter {
                 .code(foode.getCode())
                 .description(foode.getDescription())
                 .pictureUrl(foode.getPictureUrl())
+                .price(foode.getPrice())
                 .totalSales(foode.getTotalsales())
                 .status(foode.isStatus())
                 .cuisine(foode.getCuisine())
