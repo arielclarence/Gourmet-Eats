@@ -18,12 +18,12 @@ import java.time.LocalDateTime;
 public class CreateMessageRequest {
 
     @NotNull
-    private UserEntity senderid;
+    private long senderid;
 
     @NotBlank
     private String content;
 
     @NotNull
-    private ChatEntity chatid;
+    private long chatid;
 
 }

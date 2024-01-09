@@ -1,9 +1,11 @@
 package fontys.sem3.school.persistence.entity;
+
 import fontys.sem3.school.domain.User;
+import lombok.*;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
@@ -36,6 +38,12 @@ public class ChatEntity {
     @NotNull
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public String getCustomerName() {
         return customerid.getName(); // Assuming UserEntity has a 'getName()' method
     }

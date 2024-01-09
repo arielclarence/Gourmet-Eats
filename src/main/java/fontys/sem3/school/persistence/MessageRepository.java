@@ -10,7 +10,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MessageRepository extends JpaRepository<MessageEntity, Long> {
-
-    List<MessageEntity> findByChat_Id(long chatId);
-
+    List<MessageEntity> findByChatid_Id(long chatId);
 }

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class MessageEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -38,11 +39,12 @@ public class MessageEntity {
     @JoinColumn(name = "chat_id")
     @ToString.Exclude
     private ChatEntity chatid;
+
     public MessageEntity() {
         this.timestamp = LocalDateTime.now();
-        this.chatid.setUpdatedAt(this.timestamp);
+        if (this.chatid != null) {
+            this.chatid.setUpdatedAt(this.timestamp);
+        }
     }
-
-
 
 }

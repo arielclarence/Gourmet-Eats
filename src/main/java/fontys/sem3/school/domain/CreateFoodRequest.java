@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class CreateFoodRequest {
 
     @NotNull
-    private UserEntity seller;
+    private long sellerid;
 
     @NotBlank
     @Length(min = 2, max = 50)

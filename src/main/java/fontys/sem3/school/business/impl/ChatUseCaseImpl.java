@@ -2,13 +2,16 @@ package fontys.sem3.school.business.impl;
 
 import fontys.sem3.school.business.ChatUseCase;
 import fontys.sem3.school.business.UserValidator;
-import fontys.sem3.school.business.exception.InvalidUserException;
+import fontys.sem3.school.business.exception.UserNotFoundException;
 import fontys.sem3.school.domain.*;
 import fontys.sem3.school.persistence.ChatRepository;
+import fontys.sem3.school.persistence.UserRepository;
 import fontys.sem3.school.persistence.entity.ChatEntity;
+import fontys.sem3.school.persistence.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,13 +21,15 @@ import java.util.stream.Collectors;
 public class ChatUseCaseImpl implements ChatUseCase {
 
     private final ChatRepository chatRepository;
+    private final UserRepository userRepository;
+
     private final UserValidator chatValidator;
 
 
     @Override
     public CreateChatResponse createChat(CreateChatRequest request) {
 
-        Optional<Long> existingChatId = chatAlreadyExists(request.getSellerid().getId(), request.getCustomerid().getId());
+        Optional<Long> existingChatId = chatAlreadyExists(request.getCustomerid(),request.getSellerid());
 
         if (existingChatId.isPresent()) {
             // Chat already exists, return the existing chat ID
@@ -43,7 +48,7 @@ public class ChatUseCaseImpl implements ChatUseCase {
     @Override
     public GetChatsResponse getChatsbySellerid(long sellerid) {
 
-        List<Chat> chats = chatRepository.findBySellerid(sellerid)
+        List<Chat> chats = chatRepository.findBySellerid_Id(sellerid)
                 .stream()
                 .map(ChatConverter::convert)
                 .collect(Collectors.toList());
@@ -55,7 +60,7 @@ public class ChatUseCaseImpl implements ChatUseCase {
     }
     @Override
     public GetChatsResponse getChatsbyCustomerid(long customerid) {
-        List<Chat> chats = chatRepository.findByCustomerid(customerid)
+        List<Chat> chats = chatRepository.findByCustomerid_Id(customerid)
                 .stream()
                 .map(ChatConverter::convert)
                 .collect(Collectors.toList());
@@ -68,19 +73,28 @@ public class ChatUseCaseImpl implements ChatUseCase {
 
 
     private ChatEntity saveNewChat(CreateChatRequest request) {
+        UserEntity customer=getUser(request.getCustomerid());
+        UserEntity seller=getUser(request.getSellerid());
         ChatEntity newChat = ChatEntity.builder()
-                .customerid(request.getCustomerid())
-                .sellerid(request.getSellerid())
+                .customerid(customer)
+                .sellerid(seller)
+                .updatedAt(LocalDateTime.now())
                 .build();
 
         return chatRepository.save(newChat);
     }
 
-    private Optional<Long> chatAlreadyExists(long sellerId, long customerId) {
-        Optional<ChatEntity> existingChat = chatRepository.findByCustomeridAndSellerid(sellerId, customerId);
+    private Optional<Long> chatAlreadyExists( long customerId, long sellerId) {
+        Optional<ChatEntity> existingChat = chatRepository.findByCustomerid_IdAndSellerid_Id(customerId,sellerId);
         return existingChat.map(ChatEntity::getId);
     }
 
-
+    private UserEntity getUser(long userId) {
+        Optional<UserEntity>user=userRepository.findById(userId);
+        if (user.isEmpty()){
+            throw new UserNotFoundException();
+        }
+        return user.get();
+    }
 
 }

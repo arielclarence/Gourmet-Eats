@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CreateChatRequest {
     @NotNull
-    private UserEntity customerid;
+    private Long customerid;
 
     @NotNull
-    private UserEntity sellerid;
+    private Long sellerid;
 }

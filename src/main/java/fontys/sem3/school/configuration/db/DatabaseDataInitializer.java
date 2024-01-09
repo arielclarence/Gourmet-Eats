@@ -108,7 +108,7 @@ public class DatabaseDataInitializer {
         List<FoodEntity> foods = Arrays.asList(
                 // Dutch Cuisine
                 FoodEntity.builder()
-                        .seller(users.get(0)) // Replace with the actual UserEntity for the seller
+                        .seller(users.get(0))
                         .name("Erwtensoep")
                         .code(generateFoodCode("Erwtensoep"))
                         .description("Traditional Dutch pea soup, thick and hearty")
@@ -116,7 +116,7 @@ public class DatabaseDataInitializer {
                         .totalsales(0L)
                         .price(7)
                         .status(true)
-                        .cuisine(cuisines.get(0)) // Replace with the actual CuisineEntity for Dutch cuisine
+                        .cuisine(cuisines.get(0))
                         .build(),
                 FoodEntity.builder()
                         .seller(users.get(0)) // Replace with the actual UserEntity for the seller
@@ -282,14 +282,14 @@ public class DatabaseDataInitializer {
                         .build()
         );
 // Save all FoodEntity instances
-        if (cuisineRepository.count() == 0) {
-            cuisineRepository.saveAll(cuisines);
-        }
         if (userRepository.count() == 0) {
             userRepository.saveAll(users);
-           }
-        if (foodRepository.count() == 0) {
+        }
+        if (cuisineRepository.count() == 0) {
+            cuisineRepository.saveAll(cuisines);
             foodRepository.saveAll(foods);
         }
+
+
     }
 }

@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.*;
 public class MessageController {
 
     private final MessageUseCase messageUseCase;
-//    private final SimpMessagingTemplate messagingTemplate;
+    private final SimpMessagingTemplate messagingTemplate;
 
 
     @PostMapping
     public CreateMessageResponse createMessage(@RequestBody CreateMessageRequest request) {
         CreateMessageResponse response = messageUseCase.createMessage(request);
 
-        // Broadcast the new message to the corresponding chat topic using WebSocket
-//        messagingTemplate.convertAndSend("/topic/chat/" + request.getChatid(), response);
+        messagingTemplate.convertAndSend("/topic/chat/" + request.getChatid(), response);
 
         return response;
     }
