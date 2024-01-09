@@ -21,12 +21,12 @@ public class CuisinesController {
 
 
     @GetMapping
-    @RolesAllowed({"Customer", "Admin"})
+    @RolesAllowed({"Customer", "Admin","Seller"})
     public ResponseEntity<GetCuisinesResponse> getCuisines() {
         return ResponseEntity.ok(cuisineUseCase.getCuisines());
     }
     @GetMapping("{id}")
-    @RolesAllowed({"Customer", "Admin"})
+    @RolesAllowed({"Customer", "Admin","Seller"})
     public ResponseEntity<Cuisine> getCuisine(@PathVariable(value = "id") final long cuisineId) {
         final Optional<Cuisine> cuisineOptional = cuisineUseCase.getCuisine(cuisineId);
         if (cuisineOptional.isEmpty()) {

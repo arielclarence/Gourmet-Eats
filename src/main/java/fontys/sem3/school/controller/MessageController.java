@@ -17,12 +17,12 @@ public class MessageController {
     private final MessageUseCase messageUseCase;
     private final SimpMessagingTemplate messagingTemplate;
 
-
     @PostMapping
     public CreateMessageResponse createMessage(@RequestBody CreateMessageRequest request) {
         CreateMessageResponse response = messageUseCase.createMessage(request);
 
-        messagingTemplate.convertAndSend("/topic/chat/" + request.getChatid(), response);
+        messagingTemplate.convertAndSend("/topic/chat", request.getContent());
+
 
         return response;
     }
@@ -31,6 +31,4 @@ public class MessageController {
     public GetMessagesResponse getMessagesByChatId(@PathVariable long chatId) {
         return messageUseCase.getMessagesbyChatid(chatId);
     }
-
-
 }

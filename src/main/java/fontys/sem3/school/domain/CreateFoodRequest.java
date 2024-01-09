@@ -37,6 +37,6 @@ public class CreateFoodRequest {
     private double price;
 
     @NotNull
-    private CuisineEntity cuisine;
+    private Long cuisine;
 
 }

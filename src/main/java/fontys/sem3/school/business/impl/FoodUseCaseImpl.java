@@ -6,6 +6,7 @@ import fontys.sem3.school.business.exception.InvalidUserException;
 import fontys.sem3.school.business.exception.UserNotFoundException;
 import fontys.sem3.school.domain.*;
 import fontys.sem3.school.persistence.ChatRepository;
+import fontys.sem3.school.persistence.CuisineRepository;
 import fontys.sem3.school.persistence.FoodRepository;
 import fontys.sem3.school.persistence.UserRepository;
 import fontys.sem3.school.persistence.entity.CuisineEntity;
@@ -23,6 +24,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class FoodUseCaseImpl implements FoodUseCase {
     private final FoodRepository foodRepository;
+    private final CuisineRepository cuisineRepository;
+
     private final UserValidator foodIdValidator;
     private final UserRepository userRepository;
 
@@ -56,7 +59,7 @@ public class FoodUseCaseImpl implements FoodUseCase {
     }
     private FoodEntity saveNewFood(CreateFoodRequest request) {
         UserEntity seller=getUser(request.getSellerid());
-
+CuisineEntity cuisine=getCuisine(request.getCuisine());
         FoodEntity newFood = FoodEntity.builder()
                 .seller(seller)
                 .name(request.getName())
@@ -65,7 +68,7 @@ public class FoodUseCaseImpl implements FoodUseCase {
                 .pictureUrl(request.getPictureUrl())
                 .totalsales(0L)
                 .price(request.getPrice())
-                .cuisine(request.getCuisine())
+                .cuisine(cuisine)
                 .build();
         return foodRepository.save(newFood);
     }
@@ -127,6 +130,13 @@ public class FoodUseCaseImpl implements FoodUseCase {
             throw new UserNotFoundException();
         }
         return user.get();
+    }
+    private CuisineEntity getCuisine(long userId) {
+        Optional<CuisineEntity>cuisine=cuisineRepository.findById(userId);
+        if (cuisine.isEmpty()){
+            throw new UserNotFoundException();
+        }
+        return cuisine.get();
     }
 
 }
