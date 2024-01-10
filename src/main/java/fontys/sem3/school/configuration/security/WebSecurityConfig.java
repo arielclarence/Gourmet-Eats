@@ -37,8 +37,8 @@ public class WebSecurityConfig {
                         configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(registry ->
                         registry.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers(HttpMethod.POST,  "/login","/user","/user/login","/chat").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user","/cuisine","/chat","/chat/seller", "ws").permitAll()
+                                .requestMatchers(HttpMethod.POST,  "/login","/user","/user/login","/chat","/message").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user","/cuisine","/chat","/chat/seller","/message/chat" ,"ws").permitAll()
                                 .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
                                 .anyRequest().authenticated()
                 )

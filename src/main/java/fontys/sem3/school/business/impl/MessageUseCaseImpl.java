@@ -14,6 +14,7 @@ import fontys.sem3.school.persistence.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,6 +55,7 @@ public class MessageUseCaseImpl implements MessageUseCase {
         MessageEntity newMessage = MessageEntity.builder()
                 .senderid(sender)
                 .content(request.getContent())
+                .timestamp(LocalDateTime.now())
                 .chatid(chat)
                 .build();
 

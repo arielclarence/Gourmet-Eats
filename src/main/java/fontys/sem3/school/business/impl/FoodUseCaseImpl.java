@@ -59,7 +59,7 @@ public class FoodUseCaseImpl implements FoodUseCase {
     }
     private FoodEntity saveNewFood(CreateFoodRequest request) {
         UserEntity seller=getUser(request.getSellerid());
-CuisineEntity cuisine=getCuisine(request.getCuisine());
+CuisineEntity cuisine=getCuisine(request.getCuisineid());
         FoodEntity newFood = FoodEntity.builder()
                 .seller(seller)
                 .name(request.getName())

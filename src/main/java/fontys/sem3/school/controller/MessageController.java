@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("message")
+@CrossOrigin(origins = "*")
+
 public class MessageController {
 
     private final MessageUseCase messageUseCase;
