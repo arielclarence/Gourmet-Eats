@@ -43,6 +43,7 @@ public class FoodEntity {
     private String description;
 
     @NotBlank
+    @NotNull
     @Length(min = 2 ,max = 255)
     @Column(name = "pictureUrl")
     private String pictureUrl;

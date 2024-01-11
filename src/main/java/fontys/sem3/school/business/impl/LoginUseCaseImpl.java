@@ -33,9 +33,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
         if (!matchesPassword(loginRequest.getPassword(), user.getPasswordhash())) {
             throw new InvalidCredentialsException();
         }
-//        if (!Objects.equals(loginRequest.getPassword(), user.getPasswordhash())) {
-//            throw new InvalidCredentialsException();
-//        }
+
         String accessToken = generateAccessToken(user);
         return LoginResponse.builder().accessToken(accessToken).build();
     }
