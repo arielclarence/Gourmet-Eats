@@ -25,7 +25,7 @@ public class Message {
 
     private String content;
 
-    private LocalDateTime timestamp;
+    private String timestamp;
 
     private ChatEntity chatid;
 }

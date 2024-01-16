@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class MessageEntity {
 
     @Id
@@ -32,7 +33,7 @@ public class MessageEntity {
 
     @NotNull
     @Column(name = "timestamp")
-    private LocalDateTime timestamp;
+    private String timestamp;
 
     @NotNull
     @ManyToOne
@@ -40,11 +41,6 @@ public class MessageEntity {
     @ToString.Exclude
     private ChatEntity chatid;
 
-    public MessageEntity() {
-        this.timestamp = LocalDateTime.now();
-        if (this.chatid != null) {
-            this.chatid.setUpdatedAt(this.timestamp);
-        }
-    }
+
 
 }

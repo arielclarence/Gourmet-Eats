@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class MessageUseCaseImpl implements MessageUseCase {
 
     private final MessageRepository messageRepository;
     private final UserValidator messageValidator;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy, HH:mm:ss");
 
     @Override
     public CreateMessageResponse createMessage(CreateMessageRequest request) {
@@ -52,10 +54,12 @@ public class MessageUseCaseImpl implements MessageUseCase {
     private MessageEntity saveNewMessage(CreateMessageRequest request) {
         UserEntity sender=getUser(request.getSenderid());
         ChatEntity chat=getChat(request.getChatid());
+        String formattedTimestamp = LocalDateTime.now().format(formatter);
+
         MessageEntity newMessage = MessageEntity.builder()
                 .senderid(sender)
                 .content(request.getContent())
-                .timestamp(LocalDateTime.now())
+                .timestamp(formattedTimestamp)
                 .chatid(chat)
                 .build();
 

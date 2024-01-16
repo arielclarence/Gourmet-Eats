@@ -29,12 +29,16 @@ public class ChatUseCaseImpl implements ChatUseCase {
     @Override
     public CreateChatResponse createChat(CreateChatRequest request) {
 
-        Optional<Long> existingChatId = chatAlreadyExists(request.getCustomerid(),request.getSellerid());
+        Optional<ChatEntity> existingChat = chatAlreadyExists(request.getCustomerid(),request.getSellerid());
+        if (existingChat.isPresent()) {
 
-        if (existingChatId.isPresent()) {
             // Chat already exists, return the existing chat ID
             return CreateChatResponse.builder()
-                    .Id(existingChatId.get())
+                    .Id(existingChat.get().getId())
+                    .Sellerid(existingChat.get().getSellerid().getId())
+                    .Customerid(existingChat.get().getCustomerid().getId())
+                    .Customername(existingChat.get().getCustomerid().getName())
+                    .Sellername(existingChat.get().getSellerid().getName())
                     .build();
         }
 
@@ -42,6 +46,8 @@ public class ChatUseCaseImpl implements ChatUseCase {
 
         return CreateChatResponse.builder()
                 .Id(savedChat.getId())
+                .Sellerid(savedChat.getSellerid().getId())
+                .Customerid(savedChat.getCustomerid().getId())
                 .build();
     }
 
@@ -84,9 +90,9 @@ public class ChatUseCaseImpl implements ChatUseCase {
         return chatRepository.save(newChat);
     }
 
-    private Optional<Long> chatAlreadyExists( long customerId, long sellerId) {
+    private Optional<ChatEntity> chatAlreadyExists( long customerId, long sellerId) {
         Optional<ChatEntity> existingChat = chatRepository.findByCustomerid_IdAndSellerid_Id(customerId,sellerId);
-        return existingChat.map(ChatEntity::getId);
+        return existingChat;
     }
 
     private UserEntity getUser(long userId) {
