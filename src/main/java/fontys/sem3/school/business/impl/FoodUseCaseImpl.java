@@ -79,7 +79,8 @@ CuisineEntity cuisine=getCuisine(request.getCuisineid());
     }
     @Override
     public GetAllFoodsResponse getFoodsbyCuisineId(long cuisineId) {
-        List<Food> Foods = foodRepository.findByCuisine_Id(cuisineId)
+
+        List<Food> Foods = foodRepository.findByCuisine_IdAndStatus(cuisineId,true)
                 .stream()
                 .map(FoodConverter::convert)
                 .toList();

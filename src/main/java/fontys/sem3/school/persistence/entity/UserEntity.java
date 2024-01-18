@@ -77,6 +77,9 @@ public class UserEntity {
     @Min(0)
     private Long balance;
 
+    @Column(name = "token",columnDefinition = "TEXT")
+    private String token;
+
     public UserEntity() {
         this.balance = 0L; // Set the initial value to 0
     }

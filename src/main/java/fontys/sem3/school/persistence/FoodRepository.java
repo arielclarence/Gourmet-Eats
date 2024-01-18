@@ -13,5 +13,5 @@ public interface FoodRepository extends JpaRepository<FoodEntity, Long> {
     @Query("UPDATE FoodEntity f SET f.status = :status WHERE f.id = :foodId")
     boolean updateStatusByFoodId(long foodId, boolean status);
 
-    List<FoodEntity>  findByCuisine_Id(Long cuisineId);
+    List<FoodEntity> findByCuisine_IdAndStatus(Long cuisineId, boolean status);
 }
